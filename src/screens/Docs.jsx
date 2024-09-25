@@ -1,13 +1,16 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import useDocumentTitle from "../hooks/useDocumentTitle";
 
 const Docs = () => {
     useDocumentTitle("Documentation");
+    const count = useSelector((state) => state.counter.value);
 
     return (
-        <div>
+        <>
             <img src="/images/react.svg" alt="logo" className="mx-auto block m-5 h-40" />
-        </div>
+            <p className="text-center">Value of count is {count}</p>
+        </>
     );
 };
 
