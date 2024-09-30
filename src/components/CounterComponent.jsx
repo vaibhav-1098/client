@@ -1,10 +1,16 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 import { decrement, increment, reset } from "../functions/counterSlice";
 
 const CounterComponent = () => {
     const count = useSelector((state) => state.counter.value);
     const dispatch = useDispatch();
+
+    const handleReset = () => {
+        dispatch(reset());
+        toast.warn("counter reset", { autoClose: 1000, hideProgressBar: true });
+    };
 
     return (
         <div className="max-w-md mx-auto p-4 text-center">
@@ -18,7 +24,7 @@ const CounterComponent = () => {
                 </button>
                 <button
                     className="bg-gray-500 hover:bg-gray-700 text-white p-2 py-1  rounded"
-                    onClick={() => dispatch(reset())}
+                    onClick={handleReset}
                 >
                     Reset
                 </button>
